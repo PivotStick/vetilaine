@@ -17,7 +17,7 @@ jobs:
           yarn build
 
       - name: Deploy to github page
-        uses: JamesIves/github-pages-deploy-action@4.2.2
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
           branch: page
           folder: build
