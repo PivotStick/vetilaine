@@ -1,4 +1,20 @@
+<script context="module">
+	import { API } from '$lib/API';
+
+	/**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+	export async function load(input) {
+		input.session.user = await API.get('auth/session');
+		input.session.admin = input.session.user.profiles.includes('admin');
+
+		return {};
+	}
+</script>
+
 <script>
+	import { session } from '$app/stores';
+
 	import Header from '$lib/components/Header.svelte';
 </script>
 
@@ -12,24 +28,5 @@
 </main>
 
 <style global lang="scss">
-	@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-	*,
-	*::after,
-	*::before {
-		padding: 0;
-		margin: 0;
-
-		box-sizing: border-box;
-	}
-
-	:root {
-		font-family: 'Rubik', sans-serif;
-		background-color: #e9e9e9;
-	}
-
-	main {
-		margin-top: clamp(8em, 10vw, 10vw);
-		padding: 2em;
-	}
+	@import 'scss/style';
 </style>

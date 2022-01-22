@@ -1,3 +1,5 @@
+import { browser } from '$app/env';
+
 const { APP_API, PROD } = import.meta.env;
 
 const protocol = PROD ? 'https' : 'http';
@@ -7,12 +9,16 @@ const protocol = PROD ? 'https' : 'http';
  * @param {RequestInit} init
  */
 const request = async (endpoint, init = {}) => {
+	if (!browser) return;
+	const jwt = /jwt=([^;]+)/.exec(document.cookie)?.[1];
+
 	const { result, error } = await fetch(
 		`${protocol}://${APP_API}/${endpoint.replace(/^\/+/, '')}`,
 		{
 			method: init.method || 'GET',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${jwt}`
 			},
 			body: JSON.stringify(init.body)
 		}
