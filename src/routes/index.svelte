@@ -13,6 +13,7 @@
 <script>
 	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	export let articles = [];
 </script>
@@ -22,7 +23,7 @@
 </div>
 
 {#if $session.admin}
-	<a href="/admin/articles">
+	<a href="{base}/admin/articles">
 		<button>Créer un Article</button>
 	</a>
 {/if}
