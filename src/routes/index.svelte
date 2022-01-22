@@ -33,7 +33,7 @@
 		{@const [pre, cents] = price.toFixed(2).toString().split('.')}
 		<li
 			on:click={() => {
-				goto(`/articles/${_id}`);
+				goto(`${base}/articles/${_id}`);
 			}}
 		>
 			<div class="img">
