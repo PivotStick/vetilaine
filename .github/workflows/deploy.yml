@@ -1,0 +1,23 @@
+name: CD - Build & Deploy github page
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-lastest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install and Build
+        run: |
+          yarn
+          yarn build
+
+      - name: Deploy to github page
+        uses: JamesIves/github-pages-deploy-action@4.2.2
+        with:
+          branch: page
+          folder: build
