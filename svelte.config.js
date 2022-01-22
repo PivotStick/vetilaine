@@ -11,6 +11,9 @@ const config = {
 		paths: {
 			base: PROD ? '/vetilaine' : ''
 		},
+		vite: {
+			envPrefix: 'APP_'
+		},
 		adapter: adapter(),
 		target: 'body'
 	}

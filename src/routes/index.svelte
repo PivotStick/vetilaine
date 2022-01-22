@@ -1,26 +1,28 @@
+<script context="module">
+	import { API } from '$lib/API';
+
+	export async function load() {
+		const articles = await API.get('/articles');
+
+		return {
+			props: { articles }
+		};
+	}
+</script>
+
 <script>
-	let items = [
-		{
-			src: 'https://images.unsplash.com/photo-1572187092690-63fffd19feb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-			price: 110.0
-		},
-		{
-			src: 'https://images.unsplash.com/photo-1571139627661-cf707929f465?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
-			price: 98.0
-		},
-		{
-			src: 'https://images.unsplash.com/photo-1610973310510-82f514ea1986?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-			price: 87.23
-		}
-	];
+	export let articles = [];
 </script>
 
 <ul>
-	{#each items as { src, price }}
+	{#each articles as { _id, src, price, description } (_id)}
 		{@const [pre, cents] = price.toFixed(2).toString().split('.')}
 		<li>
 			<img {src} alt="" />
-			<p>{pre}<span>.{cents}</span></p>
+			<div>
+				<p class="price">{pre}<span>.{cents}</span></p>
+				<p class="description">{description}</p>
+			</div>
 		</li>
 	{/each}
 </ul>
@@ -36,6 +38,7 @@
 	li {
 		display: flex;
 		flex-direction: column;
+		border: 1px solid black;
 
 		img {
 			width: 100%;
@@ -43,14 +46,26 @@
 			object-fit: cover;
 		}
 
-		p {
+		& > div {
+			padding: 1em;
+		}
+
+		.price {
 			font-size: 2em;
 			font-weight: 900;
 
 			span {
-				font-size: 0.75em;
+				font-size: 0.5em;
 				font-weight: 300;
+
+				&::after {
+					content: '€';
+				}
 			}
+		}
+
+		.description {
+			margin-top: 1em;
 		}
 	}
 </style>
