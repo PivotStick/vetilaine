@@ -29,7 +29,7 @@
 {/if}
 
 <ul>
-	{#each articles as { _id, src, price, description } (_id)}
+	{#each articles as { _id, src, price } (_id)}
 		{@const [pre, cents] = price.toFixed(2).toString().split('.')}
 		<li
 			on:click={() => {
