@@ -9,7 +9,7 @@ const config = {
 
 	kit: {
 		paths: {
-			base: PROD ? base : ''
+			base: PROD ? '/vetilaine' : ''
 		},
 		adapter: adapter(),
 		target: 'body'
