@@ -1,1 +1,0 @@
-import{S as r,i,s as l,e as d,t as h,c as m,a as u,h as f,d as o,g as p,F as _,G as n}from"../chunks/vendor-afa9138c.js";function x(c){let t,s;return{c(){t=d("h1"),s=h("Contacts")},l(a){t=m(a,"H1",{});var e=u(t);s=f(e,"Contacts"),e.forEach(o)},m(a,e){p(a,t,e),_(t,s)},p:n,i:n,o:n,d(a){a&&o(t)}}}class C extends r{constructor(t){super();i(this,t,null,x,l,{})}}export{C as default};
